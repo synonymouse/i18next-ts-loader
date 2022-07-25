@@ -37,9 +37,7 @@ function plugin(source) {
     `${this.resourcePath}.d.ts`,
     `declare const locales = ${JSON.stringify(
       i18nTypes,
-    )} as const;export default locales;
-    export const namespace = '${namespace}' as const;
-    `,
+    )} as const;export default locales; export const namespace = '${namespace}' as const;`,
   );
 
   languages.forEach((language) => {
