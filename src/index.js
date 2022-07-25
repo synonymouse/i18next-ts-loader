@@ -12,22 +12,26 @@ function plugin(source) {
   } = this.getOptions();
 
   const hashSum = addContentHash
-    ? interpolateName(this, '[contenthash]', {
+      ? interpolateName(this, '[contenthash]', {
         content: source,
       })
-    : null;
+      : null;
 
   const namespace = `${this.resourcePath
     .replace(this.rootContext, '')
     .slice(1)
     .replace(basePath, '')
     .replace('.i18n', '')
-    .replaceAll('/', '_')}${hashSum ? `_${hashSum}` : ''}`;
+    .replaceAll('\\', '_').replaceAll('/', '_')}${hashSum ? `_${hashSum}` : ''}`;
+
   const json = JSON.parse(source);
 
   const languages = Object.keys(json);
 
+  console.log(namespace, 'namespace')
+
   const i18nTypes = getI18nTypes(json[languages[0]], `${namespace}:`);
+  console.log(i18nTypes, 'срщзф')
 
   fs.writeFileSync(
     `${this.resourcePath}.d.ts`,

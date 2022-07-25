@@ -3,3 +3,4 @@ node_modules
 locales
 *.i18n.d.ts
 dist
+.idea
